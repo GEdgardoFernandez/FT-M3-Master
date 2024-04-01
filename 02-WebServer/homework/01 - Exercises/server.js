@@ -16,13 +16,13 @@ http.createServer(function (req, res) {
       if (err) {
         res.writeHead(404, {"Content-type": "text/plain"});
         res.end("json not found");
-        return; // Added return here
+        return;
       }
       
       res.writeHead(200, {"Content-type": "application/json"});
       res.end(data);
     });
-    return; // Added return here
+    return;
   } else if (req.url === "/allDogs") {
     fs.readFile("utils/allDogs.html", "UTF8", function (err, data) {
       if (err) {
@@ -33,7 +33,7 @@ http.createServer(function (req, res) {
         res.end(data);
       }
     });
-    return; // Added return here
+    return;
   } else {
     res.writeHead(404, {"Content-type": "text/plain"});
     res.end("Route not found");
