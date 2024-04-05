@@ -1,5 +1,6 @@
 "use strict";
 
+const { error } = require("console");
 let exerciseUtils = require("./utils");
 
 let args = process.argv.slice(2).map(function (st) {
@@ -28,6 +29,17 @@ function problemA() {
 
   // promise version
   // Tu código acá:
+  Promise.all([
+    exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt"),
+    exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  ])
+  .then((responses) => {
+    responses.forEach((stanza) => exerciseUtils.blue(stanza));
+    console.log('done');
+  })
+  .catch((error) => {
+    exerciseUtils.blue.mockRestore(Error(error));
+  })
 }
 
 function problemB() {
@@ -47,6 +59,21 @@ function problemB() {
 
   // promise version
   // Tu código acá:
+  let promiseChain = Promise.resolve();
+  filenames.forEach((filename) => {
+    promiseChain = promiseChain.then(() =>{
+      return exerciseUtils.promisifiedReadFile(filename)
+      .then((stanza) => {
+        exerciseUtils.blue(stanza);
+      })
+      .catch((err) => {
+        exerciseUtils.magenta(new Error(err));
+      });
+    });
+  });
+  promiseChain.then(() => {
+    console.log('done');
+  });
 }
 
 // EJERCICIO EXTRA
@@ -54,5 +81,22 @@ function problemC() {
   let fs = require("fs");
   function promisifiedWriteFile(filename, str) {
     // tu código acá:
+    return new Promise((resolve, reject) => {
+      fs.writeFile(filename, str, (err) => {
+        err ? reject(err) : resolve();
+      })
+    })
   }
+  /*TESTEO DE OUTPUT */
+
+promisifiedWriteFile("test.txt", "hola mundo")
+.then(() => {
+  console.log("WriteFile correcto");
+})
+.catch((err) => {
+  console.log("WriteFile incorrecto: " + err);
+})
+
 }
+
+
