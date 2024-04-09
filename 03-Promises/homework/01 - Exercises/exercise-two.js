@@ -38,7 +38,7 @@ function problemA() {
     console.log('done');
   })
   .catch((error) => {
-    exerciseUtils.blue.mockRestore(Error(error));
+    exerciseUtils.blue.mockRestore(new Error(error));
   })
 }
 
