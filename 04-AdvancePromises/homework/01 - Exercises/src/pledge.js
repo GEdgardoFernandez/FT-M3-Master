@@ -21,6 +21,7 @@ class $Promise {
     }
     executor(resolve, reject);
   }
+
   _internalResolve = (value) => {
     if (this._state !== 'pending') return;
     this._state = 'fulfilled';
