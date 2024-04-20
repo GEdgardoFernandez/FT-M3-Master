@@ -41,6 +41,13 @@ async function problemA() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    const stanza = await exerciseUtils.promisifiedReadFile("poem-one/stanza-01.txt");
+    console.log("-- A. async/await version --");
+    exerciseUtils.blue(stanza);
+  } catch (error) {
+    // Ignorar errores
+  }
 }
 
 async function problemB() {
@@ -56,6 +63,13 @@ async function problemB() {
 
   // asyncawait version
   // Tu código acá:
+  async function logStanza(stanza) {
+    const content = await exerciseUtils.promisifiedReadFile(stanza);
+    console.log("-- B. async/await version --");
+    exerciseUtils.blue(content);
+  }
+  await logStanza("poem-one/stanza-02.txt");
+  await logStanza("poem-one/stanza-03.txt");
 }
 
 async function problemC() {
@@ -72,6 +86,17 @@ async function problemC() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    const content2 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-02.txt");
+    console.log("-- C. async/await version (stanza two) --");
+    exerciseUtils.blue(content2);
+    const content3 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt");
+    console.log("-- C. async/await version (stanza three) --");
+    exerciseUtils.blue(content3);
+    console.log("-- C. async/await version done --");
+  } catch (error) {
+
+  }
 }
 
 async function problemD() {
@@ -84,9 +109,17 @@ async function problemD() {
       else exerciseUtils.blue(stanza4);
     }
   );
-
   // asyncawait version
   // Tu código acá:
+  try {
+    const content = await exerciseUtils.promisifiedReadFile("poem-one/stanza-04.txt");
+    console.log("-- D. async/await version (stanza four) --");
+    exerciseUtils.blue(stanza4);
+  } catch (error) {
+      console.log("-- D. async/await version error: ", error.message);
+      exerciseUtils.magenta(error);
+    
+  }
 }
 
 async function problemE() {
@@ -107,6 +140,17 @@ async function problemE() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    const content3 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt");
+    console.log("-- E. async/await version (stanza three) --");
+    exerciseUtils.blue(stanza3);
+    const content4 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-04.txt");
+    console.log("-- E. async/await version (stanza four) --");
+    exerciseUtils.blue(stanza4);
+  }
+  catch (error) {
+    exerciseUtils.magenta(error);
+  }
 }
 
 async function problemF() {
@@ -132,4 +176,15 @@ async function problemF() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    const content3 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt");
+    console.log("-- E. async/await version (stanza three) --");
+    exerciseUtils.blue(stanza3);
+    const content4 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-04.txt");
+    console.log("-- E. async/await version (stanza four) --");
+    exerciseUtils.blue(stanza4);
+  }
+  catch (error) {
+    exerciseUtils.magenta(error);
+  }
 }

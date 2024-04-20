@@ -30,6 +30,13 @@ async function problemA() {
 
   // async await version
   // Tu código acá:
+  try {
+    const content1 = await exerciseUtils.promisifiedReadFile("poem-one/stanza");
+    exerciseUtils.blue(stanza);
+    exerciseUtils.blue(stanza2);
+  } catch (error) {
+    // Ignorar errores
+  } 
 }
 
 async function problemB() {
